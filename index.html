@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker Kuliah v2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Task Tracker Kuliah</h1>
+            <p>Kelola tugas akademik dengan sinkronisasi server.</p>
+        </header>
+
+        <!-- Form Tambah Tugas -->
+        <section class="task-form-section">
+            <form id="task-form">
+                <div class="form-group">
+                    <label for="task-title">Judul Tugas</label>
+                    <input type="text" id="task-title" placeholder="Contoh: Lab event delegation" minlength="3" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="task-course">Mata Kuliah</label>
+                        <select id="task-course" required>
+                            <option value="" disabled selected>Pilih Mata Kuliah</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-deadline">Deadline</label>
+                        <input type="date" id="task-deadline" required>
+                    </div>
+                </div>
+                <button type="submit" id="submit-btn" class="btn-primary">Tambah Tugas</button>
+            </form>
+        </section>
+
+        <!-- Kontrol: Filter, Pencarian, & Statistik -->
+        <section class="task-controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Cari tugas...">
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="active">Aktif</button>
+                <button class="filter-btn" data-filter="completed">Selesai</button>
+            </div>
+            <div class="task-counter">
+                <span id="active-count">0</span> aktif
+            </div>
+        </section>
+
+        <!-- Daftar Tugas & State Management (Loading, Error, Empty, Data) -->
+        <section class="task-list-section">
+            <!-- Loading State -->
+            <div id="loading-state" class="state-container">
+                <div class="spinner"></div>
+                <p>Memuat data tugas...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" class="state-container hidden">
+                <p id="error-message">Gagal memuat data dari server.</p>
+                <button id="retry-btn" class="btn-secondary">Coba lagi</button>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="state-container hidden">
+                <p>Belum ada tugas yang tersedia.</p>
+            </div>
+
+            <!-- Daftar List Tugas -->
+            <ul id="task-list"></ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
